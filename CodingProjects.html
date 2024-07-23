@@ -32,8 +32,8 @@
             <button onclick="toggleProjects('python-projects')">View Projects</button>
             <div id="python-projects" class="projects-list" style="display: none;">
                 <ul>
-                    <li>Data Visualization</li>
-                    <li>Flappy Bird</li>
+                    <li><a href="#" onclick="openModal('python-project1')">Data Visualization</a></li>
+                    <li><a href="#" onclick="openModal('python-project2')">Flappy Bird</a></li>
                     <!-- Add more projects here -->
                 </ul>
             </div>
@@ -45,9 +45,9 @@
             <button onclick="toggleProjects('cpp-projects')">View Projects</button>
             <div id="cpp-projects" class="projects-list" style="display: none;">
                 <ul>
-                    <li>5x5x5 LED Cube</li>
-                    <li>Live Thermostat (RTOS)</li>
-                    <li>Sound Bomb</li>
+                    <li><a href="#" onclick="openModal('cpp-project1')">5x5x5 LED Cube</a></li>
+                    <li><a href="#" onclick="openModal('cpp-project2')">Live Thermostat (RTOS)</a></li>
+                    <li><a href="#" onclick="openModal('cpp-project3')">Sound Bomb</a></li>
                 </ul>
             </div>
         </div>
@@ -58,7 +58,7 @@
             <button onclick="toggleProjects('circuit-design-projects')">View Projects</button>
             <div id="circuit-design-projects" class="projects-list" style="display: none;">
                 <ul>
-                    <li>Sound Bomb</li>
+                    <li><a href="#" onclick="openModal('circuit-project1')">Sound Bomb</a></li>
                 </ul>
             </div>
         </div>
@@ -69,8 +69,8 @@
             <button onclick="toggleProjects('systemverilog-projects')">View Projects</button>
             <div id="systemverilog-projects" class="projects-list" style="display: none;">
                 <ul>
-                    <li>"VMI" CPU</li>
-                    <li>FPGA Games</li>
+                    <li><a href="#" onclick="openModal('systemverilog-project1')">"VMI" CPU</a></li>
+                    <li><a href="#" onclick="openModal('systemverilog-project2')">FPGA Games</a></li>
                 </ul>
             </div>
         </div>
@@ -81,8 +81,8 @@
             <button onclick="toggleProjects('c-projects')">View Projects</button>
             <div id="c-projects" class="projects-list" style="display: none;">
                 <ul>
-                    <li>Astroids</li>
-                    <li>Not Dino Run</li>
+                    <li><a href="#" onclick="openModal('c-project1')">Asteroids</a></li>
+                    <li><a href="#" onclick="openModal('c-project2')">Not Dino Run</a></li>
                     <!-- Add more projects here -->
                 </ul>
             </div>
@@ -94,8 +94,8 @@
             <button onclick="toggleProjects('swift-projects')">View Projects</button>
             <div id="swift-projects" class="projects-list" style="display: none;">
                 <ul>
-                    <li>HETAP S.E.A.T.</li>
-                    <li>Project 2</li>
+                    <li><a href="#" onclick="openModal('swift-project1')">HETAP S.E.A.T.</a></li>
+                    <li><a href="#" onclick="openModal('swift-project2')">Project 2</a></li>
                     <!-- Add more projects here -->
                 </ul>
             </div>
@@ -107,8 +107,8 @@
             <button onclick="toggleProjects('matlab-projects')">View Projects</button>
             <div id="matlab-projects" class="projects-list" style="display: none;">
                 <ul>
-                    <li>FFT enable Stock predictions</li>
-                    <li>Filter Design and noise removal</li>
+                    <li><a href="#" onclick="openModal('matlab-project1')">FFT enable Stock predictions</a></li>
+                    <li><a href="#" onclick="openModal('matlab-project2')">Filter Design and noise removal</a></li>
                     <!-- Add more projects here -->
                 </ul>
             </div>
@@ -120,12 +120,156 @@
             <button onclick="toggleProjects('csharp-projects')">View Projects</button>
             <div id="csharp-projects" class="projects-list" style="display: none;">
                 <ul>
-                    <li>Dungeon Divers</li>
+                    <li><a href="#" onclick="openModal('csharp-project1')">Dungeon Divers</a></li>
                     <!-- Add more projects here -->
                 </ul>
             </div>
         </div>
         
+    </div>
+
+    <!-- Modals -->
+    <!-- Python Project Modals -->
+    <div id="python-project1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('python-project1')">&times;</span>
+            <h2>Data Visualization</h2>
+            <p>Details about the Data Visualization project.</p>
+            <!-- Add media and links here -->
+        </div>
+    </div>
+
+    <div id="python-project2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('python-project2')">&times;</span>
+            <h2>Flappy Bird</h2>
+            <p>Details about the Flappy Bird project.</p>
+            <!-- Add media and links here -->
+        </div>
+    </div>
+
+    <!-- C++ Project Modals -->
+    <div id="cpp-project1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('cpp-project1')">&times;</span>
+            <h2>5x5x5 LED Cube</h2>
+            <p>Details about the 5x5x5 LED Cube project.</p>
+            <!-- Add media and links here -->
+        </div>
+    </div>
+
+    <div id="cpp-project2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('cpp-project2')">&times;</span>
+            <h2>Live Thermostat (RTOS)</h2>
+            <p>Details about the Live Thermostat project.</p>
+            <!-- Add media and links here -->
+        </div>
+    </div>
+
+    <div id="cpp-project3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('cpp-project3')">&times;</span>
+            <h2>Sound Bomb</h2>
+            <p>Details about the Sound Bomb project.</p>
+            <!-- Add media and links here -->
+        </div>
+    </div>
+
+    <!-- Circuit Design Project Modals -->
+    <div id="circuit-project1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('circuit-project1')">&times;</span>
+            <h2>Sound Bomb</h2>
+            <p>Details about the Sound Bomb project.</p>
+            <!-- Add media and links here -->
+        </div>
+    </div>
+
+    <!-- SystemVerilog Project Modals -->
+    <div id="systemverilog-project1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('systemverilog-project1')">&times;</span>
+            <h2>"VMI" CPU</h2>
+            <p>Details about the "VMI" CPU project.</p>
+            <!-- Add media and links here -->
+        </div>
+    </div>
+
+    <div id="systemverilog-project2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('systemverilog-project2')">&times;</span>
+            <h2>FPGA Games</h2>
+            <p>Details about the FPGA Games project.</p>
+            <!-- Add media and links here -->
+        </div>
+    </div>
+
+    <!-- C Project Modals -->
+    <div id="c-project1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('c-project1')">&times;</span>
+            <h2>Asteroids</h2>
+            <p>Details about the Asteroids project.</p>
+            <!-- Add media and links here -->
+        </div>
+    </div>
+
+    <div id="c-project2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('c-project2')">&times;</span>
+            <h2>Not Dino Run</h2>
+            <p>Details about the Not Dino Run project.</p>
+            <!-- Add media and links here -->
+        </div>
+    </div>
+
+    <!-- Swift Project Modals -->
+    <div id="swift-project1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('swift-project1')">&times;</span>
+            <h2>HETAP S.E.A.T.</h2>
+            <p>Details about the HETAP S.E.A.T. project.</p>
+            <!-- Add media and links here -->
+        </div>
+    </div>
+
+    <div id="swift-project2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('swift-project2')">&times;</span>
+            <h2>Project 2</h2>
+            <p>Details about the Project 2.</p>
+            <!-- Add media and links here -->
+        </div>
+    </div>
+
+    <!-- MATLAB Project Modals -->
+    <div id="matlab-project1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('matlab-project1')">&times;</span>
+            <h2>FFT Enable Stock Predictions</h2>
+            <p>Details about the FFT Enable Stock Predictions project.</p>
+            <!-- Add media and links here -->
+        </div>
+    </div>
+
+    <div id="matlab-project2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('matlab-project2')">&times;</span>
+            <h2>Filter Design and Noise Removal</h2>
+            <p>Details about the Filter Design and Noise Removal project.</p>
+            <!-- Add media and links here -->
+        </div>
+    </div>
+
+    <!-- C# Project Modals -->
+    <div id="csharp-project1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('csharp-project1')">&times;</span>
+            <h2>Dungeon Divers</h2>
+            <p>Details about the Dungeon Divers project.</p>
+            <!-- Add media and links here -->
+        </div>
     </div>
 
     <div id="particles-js"></div>
@@ -156,6 +300,28 @@
                 projectsList.style.display = "block";
             } else {
                 projectsList.style.display = "none";
+            }
+        }
+
+        // Open modal
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.style.display = "block";
+        }
+
+        // Close modal
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.style.display = "none";
+        }
+
+        // Close the modal if the user clicks outside of it
+        window.onclick = function(event) {
+            const modals = document.getElementsByClassName('modal');
+            for (let i = 0; i < modals.length; i++) {
+                if (event.target === modals[i]) {
+                    modals[i].style.display = "none";
+                }
             }
         }
 
