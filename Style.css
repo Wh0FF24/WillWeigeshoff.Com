@@ -1,0 +1,518 @@
+/* Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  color: #000;
+  background-color: #FFF;
+  position: relative;
+  /* Set to relative */
+  height: auto;
+  /* Ensure it takes the content's height */
+  margin: 0;
+  overflow-x: hidden;
+  /* To prevent horizontal scrolling */
+  display: flex;
+  flex-direction: column;
+  /* This ensures the footer is at the bottom of the page */
+  justify-content: center;
+  /* Center horizontally */
+  align-items: center;
+  /* Center vertically */
+  min-height: 100vh;
+  /* Take at least full viewport height */
+  background-image: url('W-Banner2.png');
+  /* Replace 'path_to_your_logo.png' with the actual path to your logo */
+  background-size: cover;
+  /* This will make the logo cover the entire viewport */
+  background-repeat: no-repeat;
+  /* This ensures the logo doesn't repeat */
+  background-position: center;
+  /* This centers the logo */
+  margin: 0;
+  padding: 0;
+  z-index: 2;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, .2);
+  /* This is a white color with 50% opacity */
+  z-index: 2;
+  /* This ensures the overlay is above the particles but below the content */
+}
+
+/* Resume Overlay */
+
+#ResumeContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  flex: auto;
+  /* background-color: rgba(255, 255, 255, .2); */
+  /* This is a white color with 50% opacity */
+  z-index: 2;
+  /* This ensures the overlay is above the particles but below the content */
+}
+
+/* Particles Background */
+#particles-js {
+  position: absolute;
+  /* Change from fixed to absolute */
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  /* Prevent interaction with particles */
+}
+
+
+
+/* Sidebar Styles */
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 300px;
+  height: 100vh;
+  background-color: #333;
+  transition: left 0.3s ease-in-out;
+  z-index: 100;
+
+}
+
+#sidebar.open {
+  left: 0;
+}
+
+#sidebar.closed {
+  left: -250px;
+}
+
+#sidebar .logo {
+  display: block;
+  height: 380px;
+  transition: transform 0.3s ease-in-out;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  transform-origin: left center;
+  text-align: center;
+  margin-left: 265px;
+}
+
+#sidebar.open .logo {
+  transform: translateY(-50%) rotate(90deg);
+  position: absolute;
+  top: 0;
+}
+
+#sidebar .logo img {
+  max-height: 70px;
+  /* Adjust this value as needed */
+  width: auto;
+  display: block;
+  transition: transform 0.3s;
+  cursor: pointer;
+  transform-origin: left center;
+}
+
+#sidebar.open .logo img {
+  transform: rotate(0deg);
+}
+
+#sidebar.open .logo img {
+  transform: rotate(0deg);
+}
+
+#sidebar.closed .logo img {
+  transform: rotate(90deg);
+}
+
+#sidebar nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#sidebar nav a {
+  display: block;
+  color: #FFD700;
+  padding: 10px;
+  text-decoration: none;
+  transition: background 0.3s;
+  margin-bottom: 10px;
+}
+
+#sidebar nav a:hover {
+  background-color: #555;
+  color: #FF0000;
+}
+
+#sidebar .about-logo-wrapper {
+  position: relative;
+  height: 100px;
+}
+
+#sidebar.open .about-logo-wrapper {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+
+
+
+/* Main styling */
+#projects-content {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  /* This ensures the boxes stack vertically */
+  justify-content: center;
+  z-index: 3;
+  /* This ensures the content is above the particles */
+  background-color: rgba(255, 255, 255, 0.7);
+  /* This sets a slightly transparent white background */
+  align-content: center;
+  /* Center content boxes vertically */
+  gap: 20px;
+  /* Gap between the boxes */
+  width: 80%;
+  /* You can adjust this for your preference */
+  max-width: 1200px;
+  /* This ensures the content doesn't get too wide on large screens */
+  align-items: center;
+  /* Center the boxes horizontally */
+  position: relative;
+  /* Ensure the z-index applies */
+  top: 0;
+  /* Ensure the content is at the top of the page */
+  left: 0;
+  /* Ensure the content is at the left of the page */
+}
+
+
+
+
+/* Styling for each project box */
+#projects-content .project-box {
+  flex: 1;
+  /* This allows boxes to grow and take available space */
+  max-width: 100%;
+  /* For a three-column layout with a gap */
+  width: 100%;
+  /* Three boxes per row with 20px gap */
+  margin: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  /* Semi-transparent white background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Shadow to give a floating effect */
+  padding: 20px;
+  border-radius: 5px;
+  /* Rounded corners */
+  transition: transform 0.2s;
+  /* Smooth hover effect */
+  display: flex;
+  flex-direction: column;
+  /* Stack the items vertically */
+  justify-content: center;
+  /* Center items vertically */
+  align-items: center;
+  /* Center items horizontally */
+}
+
+#projects-content .project-box:hover {
+  transform: translateY(-10px);
+  /* Move the box up a bit on hover */
+  z-index: 10
+    /* This ensures the box is above the particles when hovered */
+    position: relative;
+  /* Ensure that the z-index applies */
+  background-color: #ff080050;
+  border-color: #FFD700;
+}
+
+#projects-content .project-box h2,
+p {
+  margin-top: 0;
+  margin-bottom: 10px;
+  /* Adjust as necessary */
+}
+
+#projects-content .project-box a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #333;
+  text-decoration: none;
+  border: 1px solid #333;
+  padding: 5px 10px;
+  border-radius: 3px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+#projects-content .project-box a:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+
+
+
+/* About Me Styleing */
+#about-me-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 90vh;
+  /* Ensure it takes up the full viewport height */
+  margin-top: 5vh;
+  /* Add a margin at the top to account for the logo */
+  gap: 0px;
+  /* Gap between the boxes */
+  flex: 1;
+  /* Allow the boxes to grow and take up space */
+  width: 100%;
+  /* Ensure the boxes take up the full width */
+  margin: 0;
+  /* Center the boxes horizontally */
+  padding: 0;
+  max-height: 100vh;
+  /* Ensure the boxes don't get too tall */
+  overflow-y: auto;
+  /* Allow the boxes to scroll if necessary */
+  z-index: 3;
+}
+
+#about-me-content .about-me-box,
+.contact-box {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  /* Adjust width as necessary */
+  max-width: 1000px;
+  /* Set a maximum width */
+  margin: 20px 0;
+  flex: 8;
+  /* Allow the boxes to grow and take up space */
+  overflow: auto;
+}
+
+#about-me-content .headshot {
+  max-width: 200px;
+  /* Adjust based on your preference */
+  border-radius: 5%;
+  /* Makes the image circular */
+  margin-right: 20px;
+  float: left;
+  /* This will make the image float to the left of your about me text */
+}
+
+#about-me-content .about-me-text {
+  overflow: hidden;
+  /* This will ensure the box wraps around the floated image */
+}
+
+#about-me-content .about-me-box h1 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  /* Adjust as necessary */
+  text-align: center;
+}
+
+
+
+#about-me-content .about-me-box {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#about-me-content .contact-box {
+  height: 10vh;
+  /* Take up the remaining 20% of the viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#about-me-content .about-me-box:hover,
+.contact-box:hover {
+  z-index: 10;
+  /* Ensure the boxes are above the banner logo when hovered */
+  transform: translateY(-10px);
+  /* Move the box up a bit on hover */
+  /* background-color: #ffd900c0;  */
+  /* ... other styles ... */
+}
+
+
+.cta-button {
+  padding: 10px 20px;
+  background-color: #FFD700;
+  /* Gold color for emphasis */
+  border: 1px solid #FF0000;
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: center;
+  color: black;
+  transition: background-color 0.3s;
+  z-index: 11;
+}
+
+.cta-button:hover {
+  background-color: #FFC400;
+  /* Slightly different gold shade for hover effect */
+}
+
+
+/* LED cube control styles */
+
+.led-controls {
+  padding: 20px;
+  background-color: #f2f2f2;
+  z-index: 3;
+}
+
+.led-controls button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  pointer-events: auto;
+  background-color: #FFD700;
+  /* initial background color */
+  color: black;
+  /* initial text color */
+  border: 2px solid black;
+  /* initial border color */
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  /* smooth transition for the color change */
+  z-index: 3;
+}
+
+/* Style when the button is being clicked */
+.led-controls button:active {
+  background-color: #4CAF50;
+  /* change background color */
+  color: white;
+  /* change text color */
+  border-color: #4CAF50;
+  /* change border color */
+}
+
+
+#ledVisualization {
+  z-index: 3;
+  /* This ensures that the 3D visualization is below the sidebar */
+  position: relative;
+  /* Ensuring the z-index takes effect */
+  margin: 0 auto;
+  /* Center the container */
+  width: 50vw;
+  /* Adjust this percentage to set the desired width */
+  height: 50vh;
+  /* Adjust this percentage to set the desired height */
+  border: 2px solid red;
+  /* Optional: adds a red border like in your drawing */
+  display: flex;
+  /* Ensures the container is a flexbox */
+  justify-content: center;
+  /* Centers the content horizontally */
+  align-items: center;
+  /* Centers the content vertically */
+}
+
+.visualization-log-container {
+  display: flex;
+  width: 100%;
+  align-items: start;
+  z-index: 3;
+}
+
+.mqtt-log-container {
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#mqttStatus {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#mqttLog {
+  height: 360px;
+  overflow-y: scroll;
+  background-color: #f2f2f2;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+/* Request a project styles */
+#request-a-project-content {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.7);
+  /* This ensures the boxes stack vertically */
+  justify-content: center;
+  z-index: 3;
+  /* This ensures the content is above the particles */
+  background-color: rgba(255, 255, 255, 0.7);
+  /* This sets a slightly transparent white background */
+  align-content: center;
+  /* Center content boxes vertically */
+  gap: 20px;
+  /* Gap between the boxes */
+  width: 80%;
+  /* You can adjust this for your preference */
+  max-width: 1200px;
+  /* This ensures the content doesn't get too wide on large screens */
+  align-items: center;
+  /* Center the boxes horizontally */
+  position: relative;
+  /* Ensure the z-index applies */
+  top: 0;
+  /* Ensure the content is at the top of the page */
+  left: 0;
+  /* Ensure the content is at the left of the page */
+}
+
+
+
+/* Responsive styles */
+@media (max-width: 764px) {
+  .project-box {
+    width: 80%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin: 0 auto;
+  }
+}

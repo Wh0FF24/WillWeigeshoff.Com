@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" />
+</head>
+
+<body>
+    <aside id="sidebar" class="closed">
+        <nav>
+            <ul>
+                <!-- Place the logo here (or wherever you prefer) -->
+                <li id="sidebarToggle" class="logo">
+                    <img src="WillWeigeshoff-logo.png" alt="Will Weigeshoff Logo">
+                </li>
+                <li><a href="Resume.html">Resume</a></li>
+                <li><a href="Extra.html">Current Project</a></li>
+                <li><a href="Index.html">About Me</a></li>
+                <li><a href="CodingProjects.html">Coding Projects</a></li>
+                <li><a href="RequestAproject.html">Request a project</a></li>
+            </ul>
+        </nav>
+    </aside>
+    
+
+    <div id="about-me-content">
+
+ 
+
+        <!-- About Me Box -->
+        <div class="about-me-box">
+            
+            <div class="about-me-text">
+                <img src="HeadShot.jpg" alt="RingFigure" class="headshot">
+                
+                <h1>Will Weigeshoff</h1>
+                <p>
+                    I am a dedicated and hardworking student at Virginia Military Institute. I am currently seeking job in electrical engineering
+                    and have a strong interest in computer science. I am a quick learner and am always looking for new challenges. (This Website being one of them).
+                    I have been teaching myself many different programming languages in hopes to be the most versatile engineer I can be. I am currently learning SWIFT
+                    along with all of the Web-Devlopment languages. (HTML CSS JavaScript). I am profiecnt at C, C++, Python, MATLAB, and SystemVerilog
+                    (as these are the languages I have been taught academically). You can check out all of my
+                    previous school project (and some personal ones) on my coding projects page. I am comissioning this spring into the United States Army National Guard as a 2nd Lieutenant.
+                    I am looking forward to serving my country and continuing my education in the military. I am always looking for new opportunities and challenges.
+                    If you have any questions feel free to contact me at any of the methods below.
+                    <!-- Additonally, if you have any projects/Cool Ideas you want someone see come true I have a page dedicated to that.  -->
+                </p>
+                
+            </div>
+            <a href="CodingProjects.html" class="cta-button">View My Projects</a>
+        </div>
+    
+        <!-- Contact Information Box -->
+        <div class="contact-box">
+            <h2>Contact Information</h2>
+            <!-- Add your contact details here -->
+            <p>Email: Will@willweigeshoff.com</p>
+            <p>School Email: WeigeshoffWR24@vmi.edu</p>
+            <p>Phone: (540) 760-2748</p>
+            <!-- Add more contact methods as needed -->
+        </div>
+    </div>
+    
+
+    <div id="particles-js"></div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+    <script>
+        // Sidebar toggle
+        const sidebar = document.getElementById('sidebar');
+const toggleLogo = document.getElementById('sidebarToggle');
+const logoWrapper = document.querySelector('.about-logo-wrapper');
+
+toggleLogo.addEventListener('click', function() {
+    if (sidebar.style.left === "-250px" || sidebar.style.left === "") {
+        sidebar.style.left = "0px";
+        logoWrapper.classList.add('open');
+    } else {
+        sidebar.style.left = "-250px";
+        logoWrapper.classList.remove('open');
+    }
+});
+
+
+          // particles.js initialization for red electrical effect
+        particlesJS('particles-js', {
+    "particles": { 
+        "number": { // Number of particles
+            "value": 200, // Number of particles
+            "density": { // Density of particles
+                "enable": true, // Enable density
+                "value_area": 1000 // Area of density
+            }
+        },
+        "color": {
+            "value": "#FF0000"  // Red color
+        },
+        "shape": {
+            "type": "edge",  // Line shape for an electrical feel
+        },
+        "opacity": {
+            "value": 0,
+            "random": true,
+            "anim": {
+                "enable": true,
+                "speed": 1,
+                // "opacity_min": 0.1,
+                "sync": false
+            }
+        },
+        "size": {
+            "value": 1,
+            "random": true,
+            "anim": {
+                "enable": false,
+            }
+        },
+        "line_linked": {
+            "enable": true,
+            "distance": 150,
+            "color": "#FF0000",  // Red color for the links
+            "opacity": 0.4,
+            "width": 1
+        },
+        "move": {
+            "enable": true,
+            "speed": 5,
+            "direction": "none",
+            "random": true,
+            "straight": false,
+            "out_mode": "out",
+            "attract": {
+                "enable": false,
+            }
+        }
+    },
+    "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+            "onhover": {
+                "enable": true,
+                "mode": "repulse"  // Particles repulse away on hover
+            },
+            "onclick": {
+                "enable": true,
+                "mode": "push"
+            },
+            "resize": true
+        },
+        "modes": {
+            "repulse": {
+                "distance": 50,
+                "duration": 0.4
+            }
+        }
+    },
+    "retina_detect": true
+}); 
+
+        AOS.init();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,326 @@
+<!-- This HTML file contains the layout and content for the "Extra" page of the WillWeigeshoff.com website. It includes a sidebar navigation menu, a visualization log container, buttons for controlling LED animations, and a red electrical effect created using the particles.js library. The file also includes scripts for toggling the sidebar, initializing particles.js and Three.js libraries, and creating a 3D LED visualization. -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" />
+</head>
+
+<body>
+    <aside id="sidebar" class="closed">
+        <nav>
+            <ul>
+                <!-- Place the logo here (or wherever you prefer) -->
+                <li id="sidebarToggle" class="logo">
+                    <img src="WillWeigeshoff-logo.png" alt="Will Weigeshoff Logo">
+                </li>
+                <li><a href="Resume.html">Resume</a></li>
+                <li><a href="Extra.html">Current Project</a></li>
+                <li><a href="Index.html">About Me</a></li>
+                <li><a href="CodingProjects.html">Coding Projects</a></li>
+                <li><a href="RequestAproject.html">Request a project</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+
+    <!-- content goes here -->
+
+    <div class="visualization-log-container">
+        <div id="ledVisualization" style="flex: 3; height: 400px;"></div>
+
+        <div class="mqtt-log-container" style="flex: 1;">
+            <div id="mqttStatus">MQTT Status: Disconnected</div>
+            <div id="mqttLog"></div>
+        </div>
+    </div>
+
+
+    <!-- Buttons -->
+
+    <div class="led-controls">
+        <button onclick="sendCommandToLED('GeoDance')">Start GeoDance</button>
+        <button onclick="sendCommandToLED('MatrixRain')">Start MatrixRain</button>
+    </div>
+
+    <div id="particles-js"></div>
+
+    <!-- Particles.js library for red electrical effect -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- AOS library for animations -->
+    <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+    <!-- Three.js library for 3d cube representation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- MQTT SDK for communication to the cube-->
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+
+
+
+    <script>
+        // Sidebar toggle
+        const sidebar = document.getElementById('sidebar');
+        const toggleLogo = document.getElementById('sidebarToggle');
+        const logoWrapper = document.querySelector('.about-logo-wrapper');
+
+        toggleLogo.addEventListener('click', function () {
+            if (sidebar.style.left === "-250px" || sidebar.style.left === "") {
+                sidebar.style.left = "0px";
+                logoWrapper.classList.add('open');
+            } else {
+                sidebar.style.left = "-250px";
+                logoWrapper.classList.remove('open');
+            }
+        });
+
+
+        // particles.js initialization for red electrical effect
+        particlesJS('particles-js', {
+            "particles": {
+                "number": { // Number of particles
+                    "value": 200, // Number of particles
+                    "density": { // Density of particles
+                        "enable": true, // Enable density
+                        "value_area": 1000 // Area of density
+                    }
+                },
+                "color": {
+                    "value": "#FF0000"  // Red color
+                },
+                "shape": {
+                    "type": "edge",  // Line shape for an electrical feel
+                },
+                "opacity": {
+                    "value": 0,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        // "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 1,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#FF0000",  // Red color for the links
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 5,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "attract": {
+                        "enable": false,
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"  // Particles repulse away on hover
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "repulse": {
+                        "distance": 50,
+                        "duration": 0.4
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
+
+        // 3D LED Visualization with Three.js
+        // Assuming these are already initialized
+        var scene, camera, renderer, cubes = [];
+var maxCubeSize = 2; // Maximum expansion size
+var cubeCenter = 2; // Center of the cube grid
+
+function initCubeOfCubes() {
+    // Initialize scene, camera, renderer
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth * 0.5, 400);
+    document.getElementById('ledVisualization').appendChild(renderer.domElement);
+
+    // Define geometry and material
+    const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5); // Verify these values
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 }); // Verify this color
+
+    // Create a 5x5x5 grid of cubes
+    for (let x = 0; x < 5; x++) {
+        for (let y = 0; y < 5; y++) {
+            for (let z = 0; z < 5; z++) {
+                let cube = new THREE.Mesh(geometry, material);
+                cube.position.set(x - 2, y - 2, z - 2); // Adjust positioning if necessary
+                scene.add(cube);
+                cubes.push(cube);
+            }
+        }
+    }
+
+    // Set camera position
+    camera.position.z = 15; // Adjust camera distance if needed
+    camera.position.y = 4; // Adjust camera height if needed
+
+    animateCubes();
+}
+
+
+        function animateCubes() {
+            let size = 0;
+            let expanding = true;
+
+            function animateStep() {
+                // Update cube colors
+                updateCubeColors(size);
+
+                // Adjust size for next frame
+                if (expanding) {
+                    if (size < maxCubeSize) size++;
+                    else expanding = false;
+                } else {
+                    if (size > 0) size--;
+                    else expanding = true;
+                }
+
+                requestAnimationFrame(animateStep);
+            }
+
+            animateStep();
+        }
+
+        function updateCubeColors(size) {
+            let lowerBound = cubeCenter - size;
+            let upperBound = cubeCenter + size;
+
+            for (let i = 0; i < cubes.length; i++) {
+                let cube = cubes[i];
+                let x = cube.position.x / 2 + 0.5;
+                let y = cube.position.y / 2 + 0.5;
+                let z = cube.position.z / 2 + 0.5;
+
+                // Determine if the cube is on the boundary of the expanding/contracting cube
+                if (x == lowerBound || x == upperBound || y == lowerBound || y == upperBound || z == lowerBound || z == upperBound) {
+                    // Change color randomly
+                    cube.material.color.setHex(Math.random() * 0xffffff);
+                } else {
+                    // Reset color
+                    cube.material.color.set(0x00ff00); // You can set to any default color
+                }
+            }
+        }
+
+        initCubeOfCubes();
+
+
+        // Resize the LED visualization when the window is resized
+        window.addEventListener('resize', function () {
+            let width = window.innerWidth * 0.5;
+            let height = 60; // Set to your desired height
+            renderer.setSize(window.innerWidth * 0.5, 400);
+            camera.aspect = (window.innerWidth * 0.5) / 400;
+            camera.updateProjectionMatrix();
+        });
+
+
+        // MQTT.js
+        const fs = require('fs');
+        const path = require('path');
+        const mqtt = require('mqtt');
+
+        function connectMQTT() {
+            // Paths to your certificate files
+            const caPath = path.join(__dirname, 'HTML/AWS Certs/AmazonRootCA1.pem');
+            const certPath = path.join(__dirname, 'HTML/AWS Certs/773fc64dee25571ea51f7d2afd095c61555da76ad5294356f91dfd3298ac2925-certificate.pem.crt');
+            const keyPath = path.join(__dirname, 'HTML/AWS Certs/773fc64dee25571ea51f7d2afd095c61555da76ad5294356f91dfd3298ac2925-private.pem.key');
+
+            // Reading the certificate files
+            const caFile = fs.readFileSync(caPath);
+            const certFile = fs.readFileSync(certPath);
+            const keyFile = fs.readFileSync(keyPath);
+
+            const options = {
+                connectTimeout: 4000,
+                clientId: 'web_client_' + parseInt(Math.random() * 100),
+                keepalive: 60,
+                clean: true,
+                useSSL: true,
+                ca: caFile,
+                cert: certFile,
+                key: keyFile
+            };
+
+            const host = 'apuzqm8dtw4u6-ats.iot.us-east-1.amazonaws.com';
+            const port = 443; // Standard port for MQTT over WebSocket Secure
+            const client = mqtt.connect(`wss://${host}:${port}/mqtt`, options);
+
+            client.on('connect', function () {
+                console.log('Connected to MQTT broker');
+                document.getElementById('mqttStatus').innerText = 'MQTT Status: Connected';
+                client.subscribe('Your_Subscription_Topic');
+            });
+
+            client.on('close', function () {
+                console.log('Disconnected from MQTT broker');
+                document.getElementById('mqttStatus').innerText = 'MQTT Status: Disconnected';
+                mqttClient = connectMQTT(); // Update the mqttClient variable
+            });
+
+            // or
+
+            client.on('offline', function () {
+                console.log('MQTT client is offline');
+                document.getElementById('mqttStatus').innerText = 'MQTT Status: Disconnected';
+            });
+
+            client.on('error', function (error) {
+                console.log('MQTT connection error:', error);
+                document.getElementById('mqttStatus').innerText = 'MQTT Status: Error - ' + error.message;
+            });
+
+            client.on('message', function (topic, message) {
+                console.log('Received message:', message.toString());
+                // Handle the received message
+            });
+
+            window.sendCommandToLED = function (command) {
+                console.log('Sending command:', command);
+                var payload = { message: command };
+                client.publish('Cube/cmd', JSON.stringify(payload));
+            };
+
+            return client;
+        }
+
+
+        let mqttClient = connectMQTT();
+
+
+    </script>
+</body>
+
+</html>

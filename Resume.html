@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" />
+</head>
+
+<body>
+    <aside id="sidebar" class="closed">
+        <nav>
+            <ul>
+                <!-- Place the logo here (or wherever you prefer) -->
+                <li id="sidebarToggle" class="logo">
+                    <img src="WillWeigeshoff-logo.png" alt="Will Weigeshoff Logo">
+                </li>
+                <li><a href="Resume.html">Resume</a></li>
+                <li><a href="Extra.html">Current Project</a></li>
+                <li><a href="Index.html">About Me</a></li>
+                <li><a href="CodingProjects.html">Coding Projects</a></li>
+                <li><a href="RequestAproject.html">Request a project</a></li>
+            </ul>
+        </nav>
+    </aside>
+    
+
+    <!-- Content goes here -->
+
+    <!-- display of resume and download link for it -->
+    <div id="ResumeContainer">
+
+        <a href="/Resources/WeigeshoffResume.pdf" download="WillWeigeshoffResume.docx">Download Resume</a>
+        <embed src="/Resources/WeigeshoffResume.pdf" width="100%" height="1000px" />
+    
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+    <script>
+        // Sidebar toggle
+        const sidebar = document.getElementById('sidebar');
+const toggleLogo = document.getElementById('sidebarToggle');
+const logoWrapper = document.querySelector('.about-logo-wrapper');
+
+toggleLogo.addEventListener('click', function() {
+    if (sidebar.style.left === "-250px" || sidebar.style.left === "") {
+        sidebar.style.left = "0px";
+        logoWrapper.classList.add('open');
+    } else {
+        sidebar.style.left = "-250px";
+        logoWrapper.classList.remove('open');
+    }
+});
+
+
+ 
+        AOS.init();
+    </script>
+</body>
+
+</html>
