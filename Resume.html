@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" />
+    <title>Will Weigeshoff's Resume</title>
 </head>
 
 <body>
     <aside id="sidebar" class="closed">
         <nav>
             <ul>
-                <!-- Place the logo here (or wherever you prefer) -->
                 <li id="sidebarToggle" class="logo">
                     <img src="WillWeigeshoff-logo.png" alt="Will Weigeshoff Logo">
                 </li>
@@ -24,16 +24,14 @@
             </ul>
         </nav>
     </aside>
-    
 
     <!-- Content goes here -->
-
-    <!-- display of resume and download link for it -->
     <div id="ResumeContainer">
-
-        <a href="/Resources/WeigeshoffResume.pdf" download="WillWeigeshoffResume.docx">Download Resume</a>
-        <embed src="/Resources/WeigeshoffResume.pdf" width="100%" height="1000px" />
-    
+        <h2>My Resume</h2>
+        <!-- Embed PDF for display -->
+        <iframe src="Resources/William-Weigeshoff-Electrical Engineer.pdf" width="100%" height="600px"></iframe>
+        <!-- Download link for the resume -->
+        <p><a href="Resources/William-Weigeshoff-Electrical Engineer.pdf" download="WillWeigeshoffResume.pdf">Download Resume</a></p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -41,21 +39,19 @@
     <script>
         // Sidebar toggle
         const sidebar = document.getElementById('sidebar');
-const toggleLogo = document.getElementById('sidebarToggle');
-const logoWrapper = document.querySelector('.about-logo-wrapper');
+        const toggleLogo = document.getElementById('sidebarToggle');
+        const logoWrapper = document.querySelector('.about-logo-wrapper');
 
-toggleLogo.addEventListener('click', function() {
-    if (sidebar.style.left === "-250px" || sidebar.style.left === "") {
-        sidebar.style.left = "0px";
-        logoWrapper.classList.add('open');
-    } else {
-        sidebar.style.left = "-250px";
-        logoWrapper.classList.remove('open');
-    }
-});
+        toggleLogo.addEventListener('click', function() {
+            if (sidebar.style.left === "-250px" || sidebar.style.left === "") {
+                sidebar.style.left = "0px";
+                logoWrapper.classList.add('open');
+            } else {
+                sidebar.style.left = "-250px";
+                logoWrapper.classList.remove('open');
+            }
+        });
 
-
- 
         AOS.init();
     </script>
 </body>
