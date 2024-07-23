@@ -511,6 +511,21 @@ p {
   /* Ensure the content is at the left of the page */
 }
 
+/* Styles for the expandable project sections */
+.projects-list {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.projects-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.projects-list li {
+    margin-bottom: 5px;
+}
+
 
 
 /* Responsive styles */
